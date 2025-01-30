@@ -9,10 +9,13 @@ OBJ =  bin/TgaLoader.o \
 all: bin/main
 
 ifeq ($(UNAME_S),Linux)
-	LIBS = -lGL -lGLEW -ldl -lSDL3
-	INCLUDES=-I ./include
-endif
-ifeq ($(UNAME_S),Darwin)
+LIBS = -lGL -lGLEW -ldl -lSDL3
+INCLUDES=-I./include
+
+clean:
+	rm bin/*.o
+	rm bin/main
+else ifeq ($(UNAME_S),Darwin)
 OBJ += bin/glad.o \
 
 LIBS= -L/opt/homebrew/opt/SDL3/lib \
