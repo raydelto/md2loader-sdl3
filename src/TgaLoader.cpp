@@ -75,8 +75,6 @@ bool LoadTGA(const char *filename, unsigned char *&data, unsigned short &width, 
         return false;
     }
     fread(data, 1, dataLength, file);
-    BGRToRGB(data, dataLength);
-
     fclose(file);
     return true;
 }
