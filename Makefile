@@ -13,7 +13,7 @@ ifeq ($(UNAME_S),Linux)
 	INCLUDES=-I ./include
 endif
 ifeq ($(UNAME_S),Darwin)
-OBJ += bin/glad.o
+OBJ += bin/glad.o \
 
 LIBS= -L/opt/homebrew/opt/SDL3/lib \
 	  -lSDL3
@@ -23,6 +23,12 @@ INCLUDES=-I./include \
 		-I/opt/homebrew/include \
 		-I./include \
 		-I/usr/local/include
+bin/glad.o: src/glad.c
+	gcc -c src/glad.c -o bin/glad.o $(INCLUDES) $(WARNINGS)
+
+clean:
+	rm bin/*.o
+	rm bin/main
 
 else
 # Windows (MinGW64)

@@ -64,16 +64,23 @@ bool Init()
 		return false;
 	}
 
+	#ifdef __APPLE__
+    // glad: load all OpenGL function pointers
+    // ---------------------------------------
+    if (!gladLoadGLLoader((GLADloadproc)SDL_GL_GetProcAddress))
+    {
+        std::cerr << "Failed to initialize GLAD" << std::endl;
+        return false;
+    }	
+	#else
 	// Initialize GLEW
 	glewExperimental = GL_TRUE;
 	if (glewInit() != GLEW_OK)
 	{
 		std::cerr << "Failed to initialize GLEW" << std::endl;
-		SDL_GL_DestroyContext(gGlContext);
-		SDL_DestroyWindow(gWindow);
-		SDL_Quit();
 		return false;
 	}
+	#endif
 
 	// Enable depth testing
 	glEnable(GL_DEPTH_TEST);
