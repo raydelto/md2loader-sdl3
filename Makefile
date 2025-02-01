@@ -47,7 +47,7 @@ endif
 
 WARNINGS=-Wall
 
-FLAGS=-std=c++17
+FLAGS=-std=c++17 -march=native -DNDEBUG -Ofast
 
 bin/%.o: src/%.cpp | bin
 	g++ -c $< -o $@ $(INCLUDES) $(WARNINGS) $(FLAGS) $(SDL_INCLUDES)
