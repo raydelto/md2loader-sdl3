@@ -136,7 +136,6 @@ int main()
 	int renderFrame = gStartFrame;
 	// Rendering loop
 	float interpolation = 0.0f;
-	int bufferIndex = 0;
 
 	glm::mat4 view, projection;
 	glm::vec3 camPos(0.0f, 0.0f, 0.0f);
@@ -210,12 +209,10 @@ int main()
 			if (renderFrame == gEndFrame)
 			{
 				renderFrame = gStartFrame;
-				bufferIndex = 0;
 			}
 			else
 			{
 				renderFrame++;
-				bufferIndex++;
 			}
 		}
 		interpolation += speed * deltaTime;
