@@ -9,8 +9,8 @@ OBJ =  bin/TgaLoader.o \
 all: bin/main
 
 ifeq ($(UNAME_S),Linux)
-LIBS = -lGL -lGLEW -ldl -lSDL3
-INCLUDES=-I./include
+LIBS = -lGL -lGLEW -ldl -lSDL3 -L/usr/local/lib
+INCLUDES=-I/usr/local/include -I./include
 
 clean:
 	rm bin/*.o
