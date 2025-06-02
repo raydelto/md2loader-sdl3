@@ -6,9 +6,7 @@ layout (location = 2) in vec2 texCoord;
 
 out vec2 TexCoord;
 
-uniform mat4 model;			// model matrix
-uniform mat4 view;			// view matrix
-uniform mat4 projection;	// projection matrix
+uniform mat4 projection;
 uniform mat4 modelView;
 uniform float interpolation;
 

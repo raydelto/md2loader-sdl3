@@ -38,8 +38,6 @@ void Md2::Draw(int frame, float angle, float interpolation, glm::mat4 &view, glm
 		model = glm::translate(model, m_position) * glm::rotate(model, glm::radians(angle), glm::vec3(1.0f, 0.0f, 0.0f)) * glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f)) * glm::scale(model, glm::vec3(0.3,0.3,0.3));
 
 		m_shaderProgram->Use();
-		m_shaderProgram->SetUniform("model", model);
-		m_shaderProgram->SetUniform("view", view);
 		m_shaderProgram->SetUniform("projection", projection);
 		m_shaderProgram->SetUniform("modelView",  view * model);
 
