@@ -29,10 +29,10 @@ bool ShaderProgram::LoadShaders(const char* vsFilename, const char* fsFilename)
 	glShaderSource(fs, 1, &fsSourcePtr, NULL);
 
 	glCompileShader(vs);
-	CheckCompileErrors(vs, VERTEX);
+	CheckCompileErrors(vs, ShaderType::VERTEX);
 
 	glCompileShader(fs);
-	CheckCompileErrors(fs, FRAGMENT);
+	CheckCompileErrors(fs, ShaderType::FRAGMENT);
 
 	mHandle = glCreateProgram();
 	if (mHandle == 0)
@@ -45,7 +45,7 @@ bool ShaderProgram::LoadShaders(const char* vsFilename, const char* fsFilename)
 	glAttachShader(mHandle, fs);
 
 	glLinkProgram(mHandle);
-	CheckCompileErrors(mHandle, PROGRAM);
+	CheckCompileErrors(mHandle, ShaderType::PROGRAM);
 
 
 	glDeleteShader(vs);
@@ -91,7 +91,7 @@ void  ShaderProgram::CheckCompileErrors(GLuint shader, ShaderType type)
 {
 	int status = 0;
 
-	if (type == PROGRAM)
+	if (type == ShaderType::PROGRAM)
 	{
 		glGetProgramiv(shader, GL_LINK_STATUS, &status);
 		if (status == GL_FALSE)

@@ -45,7 +45,7 @@ clean:
 
 endif
 
-WARNINGS=-Wall
+WARNINGS=-Wpedantic
 
 FLAGS=-std=c++17 -march=native -DNDEBUG -Ofast
 

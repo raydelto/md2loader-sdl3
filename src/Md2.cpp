@@ -45,7 +45,7 @@ void Md2::Draw(int frame, float angle, float interpolation, glm::mat4 &view, glm
 
 		GLsizei count = m_frameIndices[frame].second - m_frameIndices[frame].first + 1;
 		m_shaderProgram->SetUniform("interpolation", interpolation);
-		glDrawArrays(GL_TRIANGLES, 0, count); // Ensure correct count of vertices
+		glDrawArrays(GL_TRIANGLES, 0, count);
 		glBindVertexArray(0);
 }
 
@@ -58,15 +58,15 @@ void Md2::LoadTexture(char* textureFileName)
 void Md2::InitBuffer()
 {
 	std::vector<float> md2Vertices;
-	int startFrame = 0;
-	int endFrame = m_model->numFrames - 1;
+	uint32_t startFrame = 0;
+	uint32_t  endFrame = m_model->numFrames - 1;
 	md2model::vector *currentFrame;
 	md2model::vector *nextFrame;
 	m_model->currentFrame = startFrame;
 	m_model->interpol = 0.0f;
 
-	int vertexIndex = 0;
-	int startVertex = 0;
+	uint32_t vertexIndex = 0;
+	uint32_t startVertex = 0;
 	
 	//fill buffer
 	while(m_model->currentFrame <= endFrame)
@@ -108,15 +108,15 @@ void Md2::InitBuffer()
 	}
 
 
-	int frameIndex = startFrame;
-	unsigned int vbo,  vao;
+	uint32_t frameIndex = startFrame;
+	uint32_t vbo,  vao;
 
 	for(int i = 0 ; i < m_model->numFrames; i++)
 	{
 		glGenBuffers(1, &vbo);					// Generate an empty vertex buffer on the GPU
 		glGenVertexArrays(1, &vao);				// Tell OpenGL to create new Vertex Array Object
 
-		auto count = m_frameIndices[frameIndex].second - m_frameIndices[frameIndex].first + 1;		
+		uint32_t count = m_frameIndices[frameIndex].second - m_frameIndices[frameIndex].first + 1;		
 		glBindBuffer(GL_ARRAY_BUFFER, vbo);		// "bind" or set as the current buffer we are working with
 		glBufferData(GL_ARRAY_BUFFER,  count * sizeof(float) * 8 * 3, &md2Vertices[m_frameIndices[frameIndex].first * 8 ], GL_STATIC_DRAW); // Ensure correct buffer size
 

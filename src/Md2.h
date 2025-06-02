@@ -7,7 +7,7 @@
 #include "GL/glew.h"
 #endif
 
-#include <cstdio>
+#include <cstdint>
 #include <cstdlib>
 #include "glm/glm.hpp"
 #include "glm/gtc/matrix_transform.hpp"
@@ -114,7 +114,7 @@ class Md2
     std::vector<GLuint> m_vaoIndices;
 	std::vector<GLuint> m_vboIndices;
     std::unique_ptr<ShaderProgram> m_shaderProgram;
-    std::map<int, std::pair<int,int>> m_frameIndices;
+    std::map<uint32_t, std::pair<uint32_t, uint32_t>> m_frameIndices;
     bool m_pause;
     glm::vec3 m_position;
     bool m_modelLoaded;

@@ -17,14 +17,13 @@ public:
 	 ShaderProgram();
 	~ShaderProgram();
 
-	enum ShaderType
+	enum class ShaderType
 	{
 		VERTEX,
 		FRAGMENT,
 		PROGRAM
 	};
 
-	// Only supports vertex and fragment (this series will only have those two)
 	bool LoadShaders(const char* vsFilename, const char* fsFilename);
 	void Use();
 
