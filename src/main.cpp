@@ -23,6 +23,7 @@ namespace
 	bool gPause = false;
 	bool gWireframe = false;
 	constexpr const char* APP_TITLE = "Quake 2 MD2 Model Loader - SDL3";
+	constexpr double MILLISECONDS_PER_SECOND = 1000.0;
 }
 
 bool Init()
@@ -94,7 +95,7 @@ void ShowFPS()
 {
 	static double previousSeconds = 0.0;
 	static int frameCount = 0;
-	double currentSeconds = SDL_GetTicks() / 1000.0;
+	double currentSeconds = SDL_GetTicks() / MILLISECONDS_PER_SECOND;
 
 	double elapsedSeconds = currentSeconds - previousSeconds;
 
@@ -102,8 +103,8 @@ void ShowFPS()
 	if (elapsedSeconds > 0.25)
 	{
 		previousSeconds = currentSeconds;
-		double fps = static_cast<double>(frameCount) / elapsedSeconds;
-		double msPerFrame = 1000.0 / fps;
+		const double fps = static_cast<double>(frameCount) / elapsedSeconds;
+		const double msPerFrame = MILLISECONDS_PER_SECOND / fps;
 
 		std::ostringstream outs;
 		outs.precision(3);
@@ -130,7 +131,7 @@ int main()
 
 	md2model::Md2 player((char *)"data/female.md2", (char *)"data/female.tga");
 
-	double lastTime = SDL_GetTicks() / 1000.0;
+	double lastTime = SDL_GetTicks() / MILLISECONDS_PER_SECOND;
 	float angle = 0.0f;
 
 	int renderFrame = gStartFrame;
@@ -185,7 +186,7 @@ int main()
 			}
 		}
 
-		float currentTime = SDL_GetTicks() / 1000.0;
+		float currentTime = SDL_GetTicks() / MILLISECONDS_PER_SECOND;
 		float deltaTime = currentTime - lastTime;
 		lastTime = currentTime;
 

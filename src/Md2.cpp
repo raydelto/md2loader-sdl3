@@ -1,3 +1,4 @@
+#include <cassert>
 #include "Md2.h"
 #include "ShaderProgram.h"
 #include "Texture2D.h"
@@ -34,7 +35,6 @@ void Md2::Draw(int frame, float angle, float interpolation, glm::mat4 &view, glm
 		m_texture->Bind(0);
 		glm::mat4 model;
 
-		// Rotates around the cube center
 		model = glm::translate(model, m_position) * glm::rotate(model, glm::radians(angle), glm::vec3(1.0f, 0.0f, 0.0f)) * glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f)) * glm::scale(model, glm::vec3(0.3,0.3,0.3));
 
 		m_shaderProgram->Use();
